@@ -1,14 +1,27 @@
+
+---
 # Library Management System (Java)
 
 ## Description
-A console-based library management system that allows users to manage books, borrowing, and returns.
+A console-based library management system built in Java. This project allows basic management of books and simulates core library operations.
+
+---
 
 ## Features
-- Add / remove books
-- Borrow / return system
-- Availability tracking
+- Add and remove books
+- Display available books
+- Basic management system structure
 
-## Future Improvements
-- File storage
-- GUI
-- Database integration
+---
+
+## Project Structure
+- `Book.java` → represents a book  
+- `Library.java` → manages collection of books  
+- `Main.java` → entry point  
+
+---
+
+## How to Run
+```bash
+javac *.java
+java Main
