@@ -1,5 +1,7 @@
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
 
     private int ID;
     private String title;
@@ -11,6 +13,7 @@ public class Book {
         this.ID = ID;
         this.author = author;
         this.title = title;
+        this.borrowedBy = -1;
     }
 
     public int getID() {
@@ -45,11 +48,11 @@ public class Book {
         this.isBorrowed = isBorrowed;
     }
 
-    public int  getBorrowedBy() {
+    public int getBorrowedBy() {
         return borrowedBy;
     }
 
-    public void setBorrowedBy(int  borrowedBy) {
+    public void setBorrowedBy(int borrowedBy) {
         this.borrowedBy = borrowedBy;
     }
 

@@ -1,22 +1,23 @@
 
 import java.util.*;
 
-public interface  LibraryService {
-void addBook(Book book) throws DuplicateItemException;
+public interface LibraryService {
 
-void addMember(Member member) throws DuplicateItemException;
+    public void addBook(Book book) throws DuplicateItemException;
 
-void borrowBook(int bookId, int memberId) throws Exception;
+    public void addMember(Member member) throws DuplicateItemException;
 
-void returnBook(int bookId, int memberId) throws Exception;
+    public void borrowBook(int bookId, int memberId) throws Exception;
 
-List<Book> listAllBooks();
+    public void returnBook(int bookId, int memberId) throws Exception;
 
-List<Member> listAllMembers();
+    public List<Book> listAllBooks();
 
-List<Book> searchBooksByTitle(String keyword);
+    public List<Member> listAllMembers();
 
-void saveData() throws Exception;
+    public List<Book> searchBooksByTitle(String keyword);
 
-void loadData() throws Exception;
+    public void saveData() throws Exception;
+
+    public void loadData() throws Exception;
 }

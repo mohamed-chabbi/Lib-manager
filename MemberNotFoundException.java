@@ -1,5 +1,7 @@
+
 public class MemberNotFoundException extends Exception {
-    public MemberNotFoundException (String message) {
+
+    public MemberNotFoundException(String message) {
         super(message);
     }
 }

@@ -1,5 +1,7 @@
+
 public class MemberLimitExceededException extends Exception {
-    public MemberLimitExceededException (String message) {
+
+    public MemberLimitExceededException(String message) {
         super(message);
     }
 }
