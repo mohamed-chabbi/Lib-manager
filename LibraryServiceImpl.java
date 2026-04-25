@@ -1,8 +1,3 @@
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class LibraryServiceImpl implements LibraryService {
@@ -45,9 +40,8 @@ public class LibraryServiceImpl implements LibraryService {
         } else {
             member.setBorrowedBookIds(book.getID());
             book.setBorrowedBy(memberId);
-            book.setIsBorrowed(true);
+            // No setIsBorrowed – borrowed status derived from borrowedBy != -1
         }
-
     }
 
     @Override
@@ -64,17 +58,15 @@ public class LibraryServiceImpl implements LibraryService {
             throw new Exception("Book is not currently borrowed");
         }
 
-        int borrowedByStr = book.getBorrowedBy();
-        if (borrowedByStr == memberId) {
+        int borrowedBy = book.getBorrowedBy();
+        if (borrowedBy != memberId) {
             throw new Exception("Book was borrowed by a different member");
         }
 
         Member member = membersMap.get(memberId);
         member.getBorrowedBookIds().remove(Integer.valueOf(bookId));
 
-        book.setIsBorrowed(false);
         book.setBorrowedBy(-1);
-
         System.out.println("Book returned successfully.");
     }
 
@@ -97,29 +89,5 @@ public class LibraryServiceImpl implements LibraryService {
             }
         }
         return result;
-    }
-
-    @Override
-    public void saveData() throws Exception {
-        FileOutputStream fileOut = new FileOutputStream("library.dat");
-        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-        out.writeObject(booksMap);
-        out.writeObject(membersMap);
-        out.close();
-        fileOut.close();
-    }
-
-    @Override
-    public void loadData() throws Exception {
-        java.io.File f = new java.io.File("library.dat");
-        if (!f.exists()) {
-            return;
-        }
-        FileInputStream fileIn = new FileInputStream("library.dat");
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-        booksMap = (HashMap<Integer, Book>) in.readObject();
-        membersMap = (HashMap<Integer, Member>) in.readObject();
-        in.close();
-        fileIn.close();
     }
 }

@@ -1,8 +1,7 @@
 
-import java.io.Serializable;
 import java.util.*;
 
-public class Member implements Serializable {
+public class Member {
 
     private int ID;
     private String name;

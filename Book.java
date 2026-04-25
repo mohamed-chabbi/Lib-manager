@@ -1,13 +1,10 @@
 
-import java.io.Serializable;
-
-public class Book implements Serializable {
+public class Book {
 
     private int ID;
     private String title;
     private String author;
-    private boolean isBorrowed;
-    private int borrowedBy;
+    private int borrowedBy;  
 
     public Book(int ID, String author, String title) {
         this.ID = ID;
@@ -40,14 +37,6 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public boolean isBorrowed() {
-        return isBorrowed;
-    }
-
-    public void setIsBorrowed(boolean isBorrowed) {
-        this.isBorrowed = isBorrowed;
-    }
-
     public int getBorrowedBy() {
         return borrowedBy;
     }
@@ -56,17 +45,13 @@ public class Book implements Serializable {
         this.borrowedBy = borrowedBy;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Book{");
-        sb.append("ID=").append(ID);
-        sb.append(", title=").append(title);
-        sb.append(", author=").append(author);
-        sb.append(", isBorrowed=").append(isBorrowed);
-        sb.append(", borrowedBy=").append(borrowedBy);
-        sb.append('}');
-        return sb.toString();
+    public boolean isBorrowed() {
+        return borrowedBy != -1;
     }
 
+    @Override
+    public String toString() {
+        return "Book{ID=" + ID + ", title=" + title + ", author=" + author
+                + ", borrowedBy=" + (borrowedBy == -1 ? "none" : borrowedBy) + "}";
+    }
 }

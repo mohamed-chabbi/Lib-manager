@@ -1,19 +1,28 @@
-
 import java.util.*;
 
 public class Main {
-
     public static void main(String[] args) {
         LibraryService service = new LibraryServiceImpl();
         Scanner scanner = new Scanner(System.in);
 
+        // ========== PRELOAD MANY BOOKS FOR TESTING ==========
         try {
-            service.loadData();
-            System.out.println("Data loaded.");
-        } catch (Exception e) {
-            System.out.println("No previous data or error loading.");
+            service.addBook(new Book(1, "George Orwell", "1984"));
+            service.addBook(new Book(2, "Harper Lee", "To Kill a Mockingbird"));
+            service.addBook(new Book(3, "F. Scott Fitzgerald", "The Great Gatsby"));
+            service.addBook(new Book(4, "Jane Austen", "Pride and Prejudice"));
+            service.addBook(new Book(5, "J.D. Salinger", "The Catcher in the Rye"));
+            service.addBook(new Book(6, "Herman Melville", "Moby Dick"));
+            service.addBook(new Book(7, "Leo Tolstoy", "War and Peace"));
+            service.addBook(new Book(8, "Mark Twain", "Adventures of Huckleberry Finn"));
+            service.addBook(new Book(9, "Charles Dickens", "Great Expectations"));
+            service.addBook(new Book(10, "Bram Stoker", "Dracula"));
+            System.out.println("10 test books loaded successfully.");
+        } catch (DuplicateItemException e) {
+            System.out.println("Error loading test books: " + e.getMessage());
         }
 
+        // ========== MAIN MENU LOOP ==========
         while (true) {
             System.out.println("\n--- Library Menu ---");
             System.out.println("1. Add Book");
@@ -23,11 +32,11 @@ public class Main {
             System.out.println("5. List All Books");
             System.out.println("6. List All Members");
             System.out.println("7. Search Books by Title");
-            System.out.println("8. Save and Exit");
+            System.out.println("8. Exit");
             System.out.print("Choice: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // consume newline
 
             try {
                 switch (choice) {
@@ -78,15 +87,19 @@ public class Main {
                         break;
                     case 7:
                         System.out.print("Keyword: ");
-                        String kw = scanner.nextLine();
-                        List<Book> results = service.searchBooksByTitle(kw);
-                        for (Book b : results) {
-                            System.out.println(b);
+                        String keyword = scanner.nextLine();
+                        List<Book> results = service.searchBooksByTitle(keyword);
+                        if (results.isEmpty()) {
+                            System.out.println("No books found.");
+                        } else {
+                            for (Book b : results) {
+                                System.out.println(b);
+                            }
                         }
                         break;
                     case 8:
-                        service.saveData();
-                        System.out.println("Data saved.");
+                        System.out.println("Goodbye.");
+                        scanner.close();
                         return;
                     default:
                         System.out.println("Invalid choice.");

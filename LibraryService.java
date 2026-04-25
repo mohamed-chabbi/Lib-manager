@@ -17,7 +17,4 @@ public interface LibraryService {
 
     public List<Book> searchBooksByTitle(String keyword);
 
-    public void saveData() throws Exception;
-
-    public void loadData() throws Exception;
 }
