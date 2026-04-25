@@ -32,12 +32,12 @@ public class Member {
         return borrowedBookIds;
     }
 
-        public int getBorrowedCount(){
+    public int getBorrowedCount() {
         return borrowedBookIds.size();
     }
 
-    public void setBorrowedBookIds(List<Integer> borrowedBookIds) {
-        this.borrowedBookIds = borrowedBookIds;
+    public void setBorrowedBookIds(int bookID) {
+        this.borrowedBookIds.add(bookID);
     }
 
     @Override

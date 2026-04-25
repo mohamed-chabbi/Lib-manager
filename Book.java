@@ -1,14 +1,11 @@
 
-
-
-
 public class Book {
 
     private int ID;
     private String title;
     private String author;
     private boolean isBorrowed;
-    private String borrowedBy;
+    private int borrowedBy;
 
     public Book(int ID, String author, String title) {
         this.ID = ID;
@@ -48,15 +45,13 @@ public class Book {
         this.isBorrowed = isBorrowed;
     }
 
-    public String getBorrowedBy() {
+    public int  getBorrowedBy() {
         return borrowedBy;
     }
 
-    public void setBorrowedBy(String borrowedBy) {
+    public void setBorrowedBy(int  borrowedBy) {
         this.borrowedBy = borrowedBy;
     }
-
-
 
     @Override
     public String toString() {
